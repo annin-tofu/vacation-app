@@ -1,6 +1,6 @@
 // restart the app by "control + C" (cut the server), then rerun npm run dev everytime changes are made in thid next.config.js file
 module.exports = {
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: ["res.cloudinary.com", "links.papareact.com", "jsonkeeper.com"],
   },
 };
