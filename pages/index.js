@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
@@ -17,8 +18,8 @@ export default function Home({ exploreData, cardsData }) {
       <Header />
       {/* BANNER */}
       <Banner />
-
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
+        {/* SMALL CARDS */}
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
@@ -39,15 +40,17 @@ export default function Home({ exploreData, cardsData }) {
           </div>
         </section>
 
+        {/* MEDIUM CARDS */}
         <section>
           <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
-
           <div className="flex space-x-3 overflow-scroll scrollbar-hide">
             {cardsData?.map(({ img, title }) => (
               <MediumCard key={img} img={img} title={title} />
             ))}
           </div>
         </section>
+
+        {/* LARGE CARDS */}
         <LargeCard
           img="https://res.cloudinary.com/dhyagpwyl/image/upload/v1628172910/2da67c1c-0c61-4629-8798-1d4de1ac9291_gbzsec.jpg"
           title="The Greatest Outdoors"
@@ -55,6 +58,8 @@ export default function Home({ exploreData, cardsData }) {
           buttonText="Get Inspired"
         />
       </main>
+
+      <Footer />
     </div>
   );
 }
