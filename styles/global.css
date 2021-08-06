@@ -1,0 +1,13 @@
+@tailwind components;
+
+/* creating custom styling templates 
+03:01:18:00 */
+
+/* NOTE: dont forget to add "@apply" */
+
+/* then import "../styles/global.css in _app.js , NOT index.js!!!!! */
+@layer components {
+  .button {
+    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100 transition transform duration-100 ease-out;
+  }
+}

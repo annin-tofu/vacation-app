@@ -37,4 +37,10 @@ Next.js has built-in router.
       {/* called "self-closed component" */}
       <Header />
 
+# in Next.js
 
+      build-in router is built into the actual "page" structure.
+
+Also, when the page do not exit, instead of giving error, it will send to 404 page.
+
+You can also modify the 404 page, by creating 404.js
