@@ -87,6 +87,7 @@ function Header() {
 03:00:31:30 */}
       {searchInput && (
         //   below utility class is set because for the whole header, it was originally set to have 3 columns. by setting up like below, it spans across the whole width again.
+        // https://www.tutorialspoint.com/html-colspan-attribute
         <div className="flex flex-col col-span-3 mx-auto">
           {/* https://www.npmjs.com/package/react-date-range see Options */}
           <DateRangePicker
@@ -96,7 +97,7 @@ function Header() {
             onChange={handleSelect}
           />
           <div>
-            <h2>Number of Guests</h2>
+            <h2 className="text-2xl flex-grow">Number of Guests</h2>
           </div>
         </div>
       )}
