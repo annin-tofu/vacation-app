@@ -5,6 +5,7 @@ import {
   GlobeAltIcon,
   MenuIcon,
   UserCircleIcon,
+  UsersIcon,
 } from "@heroicons/react/solid";
 import { useState } from "react";
 // https://www.npmjs.com/package/react-date-range 03:00:35:04
@@ -25,11 +26,19 @@ function Header() {
     endDate: endDate,
     key: "selection",
   };
-
   const handleSelect = (ranges) => {
     console.log(ranges);
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
+  };
+
+  //   For number of guests : useState value set to one because we can expect that the user starts the search with most-commonluy expected No. of guest of 1
+  // 03:00:57:00 useState for the value of Number of Guests
+  const [noOfGuests, setNoOfGuests] = useState(1);
+
+  //  Press "Cancel" and resets by typing nothing in searchbar. 03:01:01:00
+  const resetInput = () => {
+    setSearchInput("");
   };
 
   return (
@@ -96,8 +105,28 @@ function Header() {
             rangeColors={["#FD5B61"]}
             onChange={handleSelect}
           />
-          <div>
-            <h2 className="text-2xl flex-grow">Number of Guests</h2>
+          <div className="flex items-center border-b mb-4">
+            <h2 className="text-2xl flex-grow font-semibold">
+              Number of Guests
+            </h2>
+
+            <UsersIcon className="h-5" />
+            <input
+              // 03:00:57:00 useState for the value of Number of Guests
+              value={noOfGuests}
+              onChange={(e) => setNoOfGuests(e.target.value)}
+              type="number"
+              //   min={1} so that a user cannot type 0 or minus number of guests
+              min={1}
+              className="w-12 pl-2 text-lg outline-none text-red-400"
+            />
+          </div>
+          <div className="flex">
+            {/* 03:01:01:00 */}
+            <button onClick={resetInput} className="flex-grow text-gray-500">
+              Cancel
+            </button>
+            <button className="flex-grow text-red-400">Search</button>
           </div>
         </div>
       )}
