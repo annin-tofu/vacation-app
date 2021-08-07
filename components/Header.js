@@ -12,8 +12,10 @@ import { useState } from "react";
 import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { useRouter } from "next/dist/client/router";
 
-function Header() {
+//previously "function Header(props) {"  03:01:40:00
+function Header({ placeholder }) {
   //REACT useState 03:00:25:58
   const [searchInput, setSearchInput] = useState("");
   console.log(searchInput);
@@ -32,6 +34,9 @@ function Header() {
     setEndDate(ranges.selection.endDate);
   };
 
+  // in Next.js, build-in router is built into the actual "page" structure. 03:01:26:00
+  const router = useRouter();
+
   //   For number of guests : useState value set to one because we can expect that the user starts the search with most-commonluy expected No. of guest of 1
   // 03:00:57:00 useState for the value of Number of Guests
   const [noOfGuests, setNoOfGuests] = useState(1);
@@ -39,6 +44,27 @@ function Header() {
   //  Press "Cancel" and resets by typing nothing in searchbar. 03:01:01:00
   const resetInput = () => {
     setSearchInput("");
+  };
+  // {/* onClick={search}, to enable search. i.e. click Search button in the header below the date-picker, and redirects to /search (Search page) 03:01:27:43 */}
+
+  // const search = () => {
+  //   router.push("/search");
+  // };
+
+  // then previous line should be advanced into below lines. >> added query param, which includes quory data (location, starting/end date, and number of guests)..
+  // the url should look like http://localhost:3000/search?location=London&startDate=2021-08-08T23.....&endDate=2021-08-21.....&noOfGuests=3
+  // this is very nice advantage Next.js has as you can easily share the url to your friend to share the info. (you cant do this with REDUX) 03:01:30:00
+  const search = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        // you cannot just pass the DATE object. it needs to be a STRING. hence  toISOString()
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        noOfGuests,
+      },
+    });
   };
 
   return (
@@ -52,8 +78,13 @@ function Header() {
     md:px-10"
     >
       {/* LEFT - Logo*/}
-      {/* utility class for tailwind. relative means relative to the size of the container. otherwise it will fit to the entire page */}
-      <div className="relative flex items-center h-10 cursor-pointer my-auto">
+      <div
+        //Next.js router. common notation for router. 03:01:26:00
+        // This will take you to Homescreen from Search page.
+        onClick={() => router.push("/")}
+        // {/* utility class for tailwind. relative means relative to the size of the container. otherwise it will fit to the entire page */}
+        className="relative flex items-center h-10 cursor-pointer my-auto"
+      >
         <Image
           src="https://res.cloudinary.com/dhyagpwyl/image/upload/v1628155898/Airbnb_Logo_B%C3%A9lo.svg_megr3n.png"
           layout="fill"
@@ -72,7 +103,8 @@ function Header() {
           onChange={(e) => setSearchInput(event.target.value)}
           className="flex-grow pl-5 bg-transparent outline-none"
           type="text"
-          placeholder="Start your search"
+          // double pipe || means "otherwise". >>> i.e. if "placeholder" is not found/null, show "Start your search"
+          placeholder={placeholder || "Start your search"}
         />
         {/* https://heroicons.com , and import heroicons by running $ npm install @heroicons/react >> */}
         {/* text-white to make the logo white */}
@@ -126,7 +158,10 @@ function Header() {
             <button onClick={resetInput} className="flex-grow text-gray-500">
               Cancel
             </button>
-            <button className="flex-grow text-red-400">Search</button>
+            {/* onClick={search}, to enable search 03:01:27:43 */}
+            <button onClick={search} className="flex-grow text-red-400">
+              Search
+            </button>
           </div>
         </div>
       )}
