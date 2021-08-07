@@ -3,11 +3,15 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 // https://date-fns.org/docs/Getting-Started 03:01:37:50
 import { format } from "date-fns";
+import InfoCard from "../components/InfoCard";
 
 // visit http://localhost:3000/search to see the page.
-function Search() {
+// previously "function Search(props) {"
+function Search({ searchResults }) {
   // 03:01:33:00
   const router = useRouter();
+
+  console.log(searchResults);
 
   //ES6 Destructuring 03:01:35:00
   // https://stackoverflow.com/questions/59845247/what-is-the-difference-between-const-a-b-c-array-and-const-a-b-c-ar
@@ -57,6 +61,36 @@ function Search() {
             <p className="button">Rooms and Beds</p>
             <p className="button">More filters</p>
           </div>
+
+          <div className="flex flex-col">
+            {/* map is how to go thru an array and return something on screen 1:51:00*/}
+            {/* if you want to return JSX objects, you have to use parenthesis (). If you want to pass in several lines of code, then use {}, then use parenthsis to wrap up JSX objects within in */}
+            {searchResults.map(
+              ({ img, location, title, description, star, price, total }) => (
+                // put InfoCard, import InfoCard, then pass in all the items. 03:01:53:00
+                // previously below lines of code looked like this...
+
+                // {searchResults.map((item) => (
+                // <InfoCard
+                //   key={item.img}
+                //   img={item.img}
+                //   location={item.location}
+
+                // you can replace "item" with each of items wrapped in curly braces, and for each items, you can remove "item."
+
+                <InfoCard
+                  key={img}
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                />
+              )
+            )}
+          </div>
         </section>
       </main>
 
@@ -66,3 +100,20 @@ function Search() {
 }
 
 export default Search;
+
+//Server-side Rendering 03:01:47:00
+// https://reffect.co.jp/react/next-js
+
+// Arrow Function
+// https://techacademy.jp/magazine/21423
+export async function getServerSideProps() {
+  const searchResults = await fetch("https://jsonkeeper.com/b/QJSB").then(
+    (res) => res.json()
+  );
+
+  return {
+    props: {
+      searchResults: searchResults,
+    },
+  };
+}
