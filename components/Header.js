@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/solid";
 import { useState } from "react";
 // https://www.npmjs.com/package/react-date-range 03:00:35:04
-import { DateRangePicker } from "react-date-range";
+import { DateRange, DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useRouter } from "next/dist/client/router";
@@ -132,7 +132,7 @@ function Header({ placeholder }) {
         <div className="flex flex-col col-span-3 mx-auto">
           {/* https://www.npmjs.com/package/react-date-range see Options */}
           {/* TODO maybe better adding class utility like "w-screen", "w-2/5", or use "DateRange" instead of "DateRangePicker"(this will disable the left tabs like Yesterday, This Week, Last Week...) */}
-          <DateRangePicker
+          <DateRange
             ranges={[selectionRange]}
             minDate={new Date()}
             rangeColors={["#FD5B61"]}
