@@ -32,8 +32,8 @@ function InfoCard({ img, location, title, description, star, price, total }) {
 
         <div className="flex justify-between items-end pt-5">
           <p className="flex items-center">
-            {/* text-red-400 to change the color of the StarIcon Logo */}
-            <StarIcon className="h-5 text-red-400" />
+            {/* text-orange-600 to change the color of the StarIcon Logo */}
+            <StarIcon className="h-5 text-yellow-600" />
             {star}
           </p>
 

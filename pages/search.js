@@ -4,6 +4,7 @@ import Header from "../components/Header";
 // https://date-fns.org/docs/Getting-Started 03:01:37:50
 import { format } from "date-fns";
 import InfoCard from "../components/InfoCard";
+import Map from "../components/Map";
 
 // visit http://localhost:3000/search to see the page.
 // previously "function Search(props) {"
@@ -64,7 +65,7 @@ function Search({ searchResults }) {
 
           <div className="flex flex-col">
             {/* map is how to go thru an array and return something on screen 1:51:00*/}
-            {/* if you want to return JSX objects, you have to use parenthesis (). If you want to pass in several lines of code, then use {}, then use parenthsis to wrap up JSX objects within in */}
+            {/* if you want to return JSX objects, you have to use parenthesis (). If you want to pass in several lines of code, then use {}, then use parenthesis to wrap up {} */}
             {searchResults.map(
               ({ img, location, title, description, star, price, total }) => (
                 // put InfoCard, import InfoCard, then pass in all the items. 03:01:53:00
@@ -91,6 +92,14 @@ function Search({ searchResults }) {
               )
             )}
           </div>
+        </section>
+
+        {/* MAP */}
+        {/* 04:00:29:00 */}
+        {/* hidden in mobile view (small screens). when the screen size of xl then show map with minimum width of 600px */}
+        <section className="hidden xl:inline-flex xl:min-w-[600px] ">
+          {/* searchResults={serachResults} means that we pass through the searchResult that first came from "ServerSideProps" and through  Search({ searchResults })  */}
+          <Map searchResults={searchResults} />
         </section>
       </main>
 

@@ -86,7 +86,7 @@ function Header({ placeholder }) {
         className="relative flex items-center h-10 cursor-pointer my-auto"
       >
         <Image
-          src="https://res.cloudinary.com/dhyagpwyl/image/upload/v1628155898/Airbnb_Logo_B%C3%A9lo.svg_megr3n.png"
+          src="https://res.cloudinary.com/dhyagpwyl/image/upload/v1628415234/Screen_Shot_2021-08-08_at_18.33.43_ymclfx.png"
           layout="fill"
           //objectFit="contain" stops stretching the image. keeps the aspect ratio
           objectFit="contain"
@@ -95,7 +95,7 @@ function Header({ placeholder }) {
         />
       </div>
 
-      {/* MIDDLE - Seach bar*/}
+      {/* MIDDLE - Search bar*/}
       {/* 02:01:00:00 */}
       <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm ">
         <input
@@ -104,15 +104,15 @@ function Header({ placeholder }) {
           className="flex-grow pl-5 bg-transparent outline-none"
           type="text"
           // double pipe || means "otherwise". >>> i.e. if "placeholder" is not found/null, show "Start your search"
-          placeholder={placeholder || "Start your search"}
+          placeholder={placeholder || "type London"}
         />
         {/* https://heroicons.com , and import heroicons by running $ npm install @heroicons/react >> */}
         {/* text-white to make the logo white */}
         {/* hidden utility class means it is hidden by default. NOTE: tailwind CSS is basically aiming for phone-usage. so hidden by default and then use md: for bigger screeen */}
-        <SearchIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
+        <SearchIcon className="hidden md:inline-flex h-8 bg-yellow-600 text-white rounded-full p-2 cursor-pointer md:mx-2" />
       </div>
 
-      {/* RIGHT */}
+      {/* RIGHT
       <div className="flex items-center space-x-4 justify-end text-gray-500">
         <p className="hidden md:inline cursor-pointer">Become a host</p>
         <GlobeAltIcon className="h-6 cursor-pointer" />
@@ -121,7 +121,7 @@ function Header({ placeholder }) {
           <MenuIcon className="h-6" />
           <UserCircleIcon className="h-6" />
         </div>
-      </div>
+      </div> */}
 
       {/* DATEPICKER */}
       {/* If the serachbar input has a value(If it is "true"), then ("&&") render the following.
@@ -150,7 +150,7 @@ function Header({ placeholder }) {
               type="number"
               //   min={1} so that a user cannot type 0 or minus number of guests
               min={1}
-              className="w-12 pl-2 text-lg outline-none text-red-400"
+              className="w-12 pl-2 text-lg outline-none text-yellow-600"
             />
           </div>
           <div className="flex">
@@ -159,7 +159,7 @@ function Header({ placeholder }) {
               Cancel
             </button>
             {/* onClick={search}, to enable search 03:01:27:43 */}
-            <button onClick={search} className="flex-grow text-red-400">
+            <button onClick={search} className="flex-grow text-yellow-600">
               Search
             </button>
           </div>
