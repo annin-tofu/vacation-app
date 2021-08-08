@@ -131,6 +131,7 @@ function Header({ placeholder }) {
         // https://www.tutorialspoint.com/html-colspan-attribute
         <div className="flex flex-col col-span-3 mx-auto">
           {/* https://www.npmjs.com/package/react-date-range see Options */}
+          {/* TODO maybe better adding class utility like "w-screen", "w-2/5", or use "DateRange" instead of "DateRangePicker"(this will disable the left tabs like Yesterday, This Week, Last Week...) */}
           <DateRangePicker
             ranges={[selectionRange]}
             minDate={new Date()}
